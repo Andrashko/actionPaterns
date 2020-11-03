@@ -23,21 +23,34 @@ class CardPayment{
     }
 }
 
-class Cashbox {
+class CashboxWithState {
     constructor(){
-        this.paymentStrategy = null;
+        this.paymentStates = {
+            "CASH": new CashPayment(),
+            "CARD": new CardPayment(),
+        }
+        this.state = "CASH";
+    }
+    
+    get States () {
+        return Object.getOwnPropertyNames(this.paymentStates); 
+    }
+
+    set State(value){
+        if (this.States.indexOf(value)>-1)
+            this.state=value;
+        else
+            throw "Unknown state";
     }
 
     TakePayment(sum){
-        if (this.paymentStrategy && this.paymentStrategy.Pay)
-            return this.paymentStrategy.Pay(sum);
+        if (this.paymentStates[this.state])
+            return this.paymentStates[this.state].Pay(sum);
         return false;    
     }
 
-    set Strategy (value) {
-        this.paymentStrategy = value;
-    }
+    
 }
 
 
-export  {Cashbox, CashPayment, CardPayment};
+export default CashboxWithState;

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+
 namespace cs
 {
     interface Payment
@@ -36,34 +36,16 @@ namespace cs
 
     class Cashbox
     {
-        private Dictionary<string, Payment> paymentStrategies = new Dictionary<string, Payment>();
-        public Cashbox()
+        private  Payment paymentStrategy = null;
+       
+        public void setPaymentStrategy(Payment paymentStrategy){
+            this.paymentStrategy = paymentStrategy;
+        }   
+        public bool TakePayment(double sum)
         {
-            paymentStrategies.Add("CASH", new CashPayment());
-            paymentStrategies.Add("CARD", new CardPayment());
-        }
-
-        public bool TakePayment(string strategy, double sum)
-        {
-            Payment payment;
-            if (paymentStrategies.TryGetValue(strategy, out payment))
-            {
-                return payment.Pay(sum);
-            }
+            if (this.paymentStrategy != null)
+                return this.paymentStrategy.Pay(sum);
             return false;
-        }
-
-        public List<string> Strategies
-        {
-            get
-            {
-                List<string> result = new List<string>();
-                foreach (string strategy in paymentStrategies.Keys)
-                {
-                    result.Add(strategy);
-                }
-                return result;
-            }
         }
     }
 }
