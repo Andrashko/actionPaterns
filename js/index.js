@@ -1,3 +1,22 @@
+import {Subject, LessFiveObserver, EvenObserver} from "./Observer";
+
+let subject = new Subject();
+let less5 = new LessFiveObserver();
+let even = new EvenObserver();
+subject.Attach(less5);
+subject.Attach(even);
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+subject.Detach(even);
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+subject.RandomState();
+
 // import  {Cashbox, CashPayment, CardPayment} from "./Strategy";
 // import promptSync from "prompt-sync";
 // let prompt = promptSync();
@@ -16,18 +35,18 @@
 //         console.log("Платіж не успішний");    
 // }
 
-import  CashboxWithState from "./State";
-import promptSync from "prompt-sync";
-let prompt = promptSync();
+// import  CashboxWithState from "./State";
+// import promptSync from "prompt-sync";
+// let prompt = promptSync();
 
-let cashbox = new CashboxWithState();
-while (true) {
-    let sum = Number(prompt("Введіть суму до оплати або 0 для виходу:"));
-    if (sum<=0) 
-        break;
-    cashbox.State = prompt("Виберіть статрегію оплати\n" + cashbox.States.join("\n")+"\n");
-    if (cashbox.TakePayment(sum))
-        console.log("Платіж успішний");
-    else
-        console.log("Платіж не успішний");    
-}
+// let cashbox = new CashboxWithState();
+// while (true) {
+//     let sum = Number(prompt("Введіть суму до оплати або 0 для виходу:"));
+//     if (sum<=0) 
+//         break;
+//     cashbox.State = prompt("Виберіть статрегію оплати\n" + cashbox.States.join("\n")+"\n");
+//     if (cashbox.TakePayment(sum))
+//         console.log("Платіж успішний");
+//     else
+//         console.log("Платіж не успішний");    
+// }
