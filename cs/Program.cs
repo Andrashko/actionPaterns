@@ -7,23 +7,35 @@ namespace cs
     {
         static void Main(string[] args)
         {     
-
-            var subject = new Subject();
-            var lessFive = new LessFiveObserver();
-            var even = new EvenObserver();
-            subject.Attach(lessFive);
+            var subject = new EventSubject();
+            var less5 = new EventLessFiveObserver();
+            var even = new EventEvenObserver();
             subject.Attach(even);
+            subject.Attach(less5);
             subject.RandomState();
             subject.RandomState();
             subject.RandomState();
             subject.RandomState();
             subject.RandomState();
-            subject.Detach(even);
-            subject.RandomState();
-            subject.RandomState();
-            subject.RandomState();
-            subject.RandomState();
-            subject.RandomState();
+        }
+
+        private static void All(){
+            // var subject = new Subject();
+            // var lessFive = new LessFiveObserver();
+            // var even = new EvenObserver();
+            // subject.Attach(lessFive);
+            // subject.Attach(even);
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.Detach(even);
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
+            // subject.RandomState();
                 
         //    Cashbox cashbox = new Cashbox();
         //    List<Payment> strategies = new List<Payment>(2) {new CashPayment(), new CardPayment() };
@@ -57,7 +69,6 @@ namespace cs
             //     else
             //         Console.WriteLine("Платіж не успішний"); 
             // }           
-
 
         }
     }
