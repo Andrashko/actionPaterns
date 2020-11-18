@@ -1,21 +1,31 @@
-import {Subject, LessFiveObserver, EvenObserver} from "./Observer";
+// import {LogHandler, AuthorizeHandler, ResponceHandler} from "./ChainOfResposebility";
+// let chain = new LogHandler();
+// chain.SetNext(new AuthorizeHandler()).SetNext(new ResponceHandler());
+// console.log(chain.Handle({Login:"admin", Password:"admin"}));
+// console.log(chain.Handle({Login:"Noname", Password:"No"}));
 
-let subject = new Subject();
-let less5 = new LessFiveObserver();
-let even = new EvenObserver();
-subject.Attach(less5);
-subject.Attach(even);
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
-subject.Detach(even);
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
-subject.RandomState();
+import {Chain, LogHandlerFunction, AuthorizeHandlerFunction} from "./FunctionChainOfResponsebiliry";
+let chain = new Chain();
+chain.Use(LogHandlerFunction).Use(AuthorizeHandlerFunction);
+console.log(chain.Handle({Login:"admin", Password:"admin"}));
+// import {Subject, LessFiveObserver, EvenObserver} from "./Observer";
+
+// let subject = new Subject();
+// let less5 = new LessFiveObserver();
+// let even = new EvenObserver();
+// subject.Attach(less5);
+// subject.Attach(even);
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
+// subject.Detach(even);
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
+// subject.RandomState();
 
 // import  {Cashbox, CashPayment, CardPayment} from "./Strategy";
 // import promptSync from "prompt-sync";
