@@ -7,6 +7,7 @@
 import {Chain, LogHandlerFunction, AuthorizeHandlerFunction} from "./FunctionChainOfResponsebiliry";
 let chain = new Chain();
 chain.Use(LogHandlerFunction).Use(AuthorizeHandlerFunction);
+console.log(chain);
 console.log(chain.Handle({Login:"admin", Password:"admin"}));
 // import {Subject, LessFiveObserver, EvenObserver} from "./Observer";
 

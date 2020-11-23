@@ -1,5 +1,6 @@
-function HadnlerFunction(error, request, next) {
+function HadnlerFunction(error, request, next = this._next) {
     try {
+        console.log(arguments);
         if (error) {
             console.error(error);
             throw error;
@@ -18,6 +19,7 @@ function HadnlerFunction(error, request, next) {
 
 function LogHandlerFunction(error, request, next) {
     try {
+        console.log(arguments);
         if (error) {
             console.error(error);
             throw error;
@@ -39,6 +41,7 @@ function AuthorizeHandlerFunction(error, request, next) {
         return Login == "admin" && Password == "admin";
     }
     try {
+        console.log(arguments);
         if (error) {
             console.error(error);
             throw error;
@@ -69,21 +72,19 @@ function AuthorizeHandlerFunction(error, request, next) {
 }
 
 class Chain{
-    constructor (handler, next){
-        this._handler = handler || HadnlerFunction;
-        this._next = next || null;
+    constructor (handler){
+        this = handler || HadnlerFunction;
+        this._next = null;
     }
 
+   
     Use (HadnlerFunction){
-        console.log("use");
-        console.log(this);
-        this._next = new Chain(HadnlerFunction,  this._next);
-        console.log(this);
-        return this;
+        HadnlerFunction._next = this._next;
+        this._next = HadnlerFunction;
     }
 
     Handle(request){
-        return this._handler(null, request, this._next);
+        this()
     }
 }
 
