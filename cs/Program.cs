@@ -7,8 +7,12 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            TestVisitor();
-            TestIterator();
+            ex.Student s = new ex.Student("Іванов", "Іван",2);
+            ex.Printer printer = new ex.Printer();
+            s.Accept(printer);  
+            s.Accept(new ex.Hi());  
+            //TestVisitor();
+            //TestIterator();
         }
         static void TestVisitor()
         {
