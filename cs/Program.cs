@@ -7,12 +7,38 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            ex.Student s = new ex.Student("Іванов", "Іван",2);
-            ex.Printer printer = new ex.Printer();
-            s.Accept(printer);  
-            s.Accept(new ex.Hi());  
-            //TestVisitor();
-            //TestIterator();
+            TestMemento();
+        }
+
+        static void TestMemento(){
+            Originator originator = new Originator("Init state");
+            Caretaker caretaker = new Caretaker(originator);
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            Console.WriteLine();
+            caretaker.ShowHistory();
+
+            Console.WriteLine("\nClient: Now, let's rollback!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine();
         }
         static void TestVisitor()
         {
@@ -31,6 +57,12 @@ namespace cs
             Console.WriteLine("It allows the same client code to work with different types of visitors:");
             var visitor2 = new ConcreteVisitor2();
             Client.ClientCode(components, visitor2);
+            
+            //-------------------------------------------
+            ex.Student s = new ex.Student("Іванов", "Іван",2);
+            ex.Printer printer = new ex.Printer();
+            s.Accept(printer);  
+            s.Accept(new ex.Hi()); 
         }
         static void TestIterator()
         {

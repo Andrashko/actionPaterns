@@ -1,14 +1,45 @@
+function TestMemento() {
+    import { Originator, Caretaker } from "./Memento";
+    let originator = new Originator("Init state");
+    let caretaker = new Caretaker(originator);
+
+    caretaker.Backup();
+    originator.DoSomething();
+
+    caretaker.Backup();
+    originator.DoSomething();
+
+    caretaker.Backup();
+    originator.DoSomething();
+
+    console.log();
+    caretaker.ShowHistory();
+
+    console.log("\nClient: Now, let's rollback!\n");
+    caretaker.Undo();
+
+    console.log("\n\nClient: Once more!\n");
+    caretaker.Undo();
+
+    console.log("\n\nClient: Once more!\n");
+    caretaker.Undo();
+
+    console.log("\n\nClient: Once more!\n");
+    caretaker.Undo();
+}
+
+
 // import {LogHandler, AuthorizeHandler, ResponceHandler} from "./ChainOfResposebility";
 // let chain = new LogHandler();
 // chain.SetNext(new AuthorizeHandler()).SetNext(new ResponceHandler());
 // console.log(chain.Handle({Login:"admin", Password:"admin"}));
 // console.log(chain.Handle({Login:"Noname", Password:"No"}));
 
-import {Chain, LogHandlerFunction, AuthorizeHandlerFunction} from "./FunctionChainOfResponsebiliry";
-let chain = new Chain();
-chain.Use(LogHandlerFunction).Use(AuthorizeHandlerFunction);
-console.log(chain);
-console.log(chain.Handle({Login:"admin", Password:"admin"}));
+// import {Chain, LogHandlerFunction, AuthorizeHandlerFunction} from "./FunctionChainOfResponsebiliry";
+// let chain = new Chain();
+// chain.Use(LogHandlerFunction).Use(AuthorizeHandlerFunction);
+// console.log(chain);
+// console.log(chain.Handle({Login:"admin", Password:"admin"}));
 // import {Subject, LessFiveObserver, EvenObserver} from "./Observer";
 
 // let subject = new Subject();
