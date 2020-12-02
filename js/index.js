@@ -1,32 +1,47 @@
-function TestMemento() {
-    import { Originator, Caretaker } from "./Memento";
-    let originator = new Originator("Init state");
-    let caretaker = new Caretaker(originator);
+// import { Originator, Caretaker } from "./Memento";
 
-    caretaker.Backup();
-    originator.DoSomething();
+// function TestMemento() {
 
-    caretaker.Backup();
-    originator.DoSomething();
+//     let originator = new Originator("Init state");
+//     let caretaker = new Caretaker(originator);
 
-    caretaker.Backup();
-    originator.DoSomething();
+//     caretaker.Backup();
+//     originator.DoSomething();
 
-    console.log();
-    caretaker.ShowHistory();
+//     caretaker.Backup();
+//     originator.DoSomething();
 
-    console.log("\nClient: Now, let's rollback!\n");
-    caretaker.Undo();
+//     caretaker.Backup();
+//     originator.DoSomething();
 
-    console.log("\n\nClient: Once more!\n");
-    caretaker.Undo();
+//     console.log();
+//     caretaker.ShowHistory();
 
-    console.log("\n\nClient: Once more!\n");
-    caretaker.Undo();
+//     console.log("\nClient: Now, let's rollback!\n");
+//     caretaker.Undo();
 
-    console.log("\n\nClient: Once more!\n");
-    caretaker.Undo();
+//     console.log("\n\nClient: Once more!\n");
+//     caretaker.Undo();
+
+//     console.log("\n\nClient: Once more!\n");
+//     caretaker.Undo();
+
+//     console.log("\n\nClient: Once more!\n");
+//     caretaker.Undo();
+// };
+
+
+import {AlphabeticalOrderIterator,  AlphabeticalOrderGenerator}from "./Iterator";
+const orderd = new AlphabeticalOrderIterator(["One", "Two", "Three", "Four"], true);
+for (let word of orderd){
+    console.log(word);
 }
+
+const generatet = AlphabeticalOrderGenerator(["One", "Two", "Three", "Four"]);
+for (let word of generatet){
+    console.log(word);
+}
+
 
 
 // import {LogHandler, AuthorizeHandler, ResponceHandler} from "./ChainOfResposebility";
